@@ -11,10 +11,14 @@
 <script type="text/javascript" src="statci/lib/respond.min.js"></script>
 <![endif]-->
 <!--[if IE 6]>
-<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script type="text/javascript" src="static/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
  <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
    <!--logo-->
     <style type="text/css">
 
@@ -212,7 +216,6 @@
         }
     </style>
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
    <!--表单样式-->
     <style type="text/css">
@@ -284,6 +287,17 @@
           transform: translateX(-50%) translateY(-50%);
           z-index: 10;
           box-shadow: 0 0 1em rgba(0,0,0,.1);
+        }
+
+         .form-sms
+        {
+              position: absolute;
+              top: 82%;
+              left: 50%;
+    /* margin-bottom: 10px; */
+              padding-bottom: 10px;
+              transform: translateX(-50%) translateY(-50%);
+              z-index: 10;
         }
 
         .form-login :focus
@@ -635,6 +649,119 @@
 
     </script>
 
+    <!--发送短信-->
+    <style type="text/css">
+        * {
+          font-family: 'Roboto', sans-serif;
+        }
+
+        .sms_container {
+          margin-left: -65px;
+          margin-top: 20px;
+          width: 130px;
+          height: 40px;
+          text-align: center;
+        }
+
+        button {
+          outline: none;
+          height: 40px;
+          text-align: center;
+          width: 130px;
+          border-radius: 40px;
+          background: #fff;
+          border: 2px solid #1ECD97;
+          color: #1ECD97;
+          letter-spacing: 1px;
+          font-size: 12px;
+          font-weight: bold;
+          cursor: pointer;
+          transition: all 0.25s ease;
+        }
+        button:hover {
+          color: white;
+          background: #1ECD97;
+        }
+        button:active {
+          letter-spacing: 2px;
+        }
+        button:after {
+          content: "点我获取验证码";
+        }
+
+        .onclic {
+          width: 40px;
+          border-color: #bbbbbb;
+          border-width: 3px;
+          font-size: 0;
+          border-left-color: #1ECD97;
+          -webkit-animation: rotating 2s 0.25s linear infinite;
+                  animation: rotating 2s 0.25s linear infinite;
+        }
+        .onclic:after {
+          content: "";
+        }
+        .onclic:hover {
+          color: #1ECD97;
+          background: white;
+        }
+
+        .validate {
+          font-size: 13px;
+          color: white;
+          background: #1ECD97;
+        }
+        .validate:after {
+          font-family: 'FontAwesome';
+          content: "\f00c";
+        }
+
+        @-webkit-keyframes rotating {
+          from {
+            -webkit-transform: rotate(0deg);
+                    transform: rotate(0deg);
+          }
+          to {
+            -webkit-transform: rotate(360deg);
+                    transform: rotate(360deg);
+          }
+        }
+
+        @keyframes rotating {
+          from {
+            -webkit-transform: rotate(0deg);
+                    transform: rotate(0deg);
+          }
+          to {
+            -webkit-transform: rotate(360deg);
+                    transform: rotate(360deg);
+          }
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        $(function() {
+          $( "#sms_button" ).click(function() {
+            $( "#sms_button" ).addClass( "onclic", 250, validate);
+          });
+
+          function validate() {
+            setTimeout(function() {
+              $( "#sms_button" ).removeClass( "onclic" );
+              $( "#sms_button" ).addClass( "validate", 450, callback );
+            }, 2250 );
+          }
+            function callback() {
+              setTimeout(function() {
+                $( "#sms_button" ).removeClass( "validate" );
+              }, 1250 );
+            }
+          });
+
+    </script>
+
+
 
 <title>OA登录</title>
 <meta name="keywords" content="oa login">
@@ -668,7 +795,13 @@
              <p>{{ stderr }}</p>
          {% endif %}
     <input type="submit" class="submit btn"  id="user_login" value="Login"/>
+
   </form>
+
+   <div class="form-sms">
+     <button id="sms_button"></button>
+  </div>
+
 </div>
 
 
