@@ -1,0 +1,710 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="static/lib/html5shiv.js"></script>
+<script type="text/javascript" src="statci/lib/respond.min.js"></script>
+<![endif]-->
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+ <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+   <!--logo-->
+    <style type="text/css">
+
+       #logo {
+          position: relative;
+          display: block;
+          top: 70px;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        .orbit-circle {
+          display: inline-block;
+          position: relative;
+          height: 100px;
+          width: 100px;
+          transform-origin: center;
+          animation: orbit 10s infinite linear;
+          animation-delay: 0.25s;
+          border: 5px solid white;
+          border-radius: 50%;
+          box-shadow: 0 0 15px #4bbce7;
+        }
+
+        .orbit-object {
+          position: absolute;
+          top: 15px;
+          left: 0;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background-color: #fff;
+          box-shadow: 0px 0px 10px #54f7f8, 0px 0px 20px #54f7f8, 0px 0px 30px #54f7f8, 0px 0px 50px #54f7f8, 0px 0px 60px #54f7f8;
+          z-index: 1;
+        }
+        .orbit-object span.ripple {
+          position: relative;
+          top: -11px;
+          left: 0px;
+          width: 5px;
+          height: 5px;
+          padding: 5px;
+          font-size: 0px;
+          border-radius: 50%;
+          background-color: transparent;
+          animation: ripple 1s infinite linear;
+        }
+
+        .text {
+          position: relative;
+          display: inline-block;
+          border-radius: 50%;
+          color: white;
+          font-size: 114px;
+          text-shadow: 0 0 15px #4bbce7;
+        }
+
+        .trace {
+          position: relative;
+          height: 5px;
+          width: 150px;
+          top: 50px;
+          left: -25px;
+          transform-origin: center;
+          transform: rotate(-45deg);
+          background-color: white;
+          z-index: 2;
+        }
+
+        /*responsive*/
+        @media screen and (max-width: 992px) {
+          .text {
+            font-size: 58px;
+            line-height: 1;
+          }
+
+          .orbit-circle {
+            position: relative;
+            height: 50px;
+            width: 50px;
+            border: 3px solid white;
+          }
+
+          .orbit-object {
+            width: 5px;
+            height: 5px;
+            box-shadow: 0px 0px 5px #54f7f8, 0px 0px 10px #54f7f8, 0px 0px 15px #54f7f8, 0px 0px 25px #54f7f8, 0px 0px 30px #54f7f8;
+            top: 7px;
+          }
+          .orbit-object span.ripple {
+            padding: 1px;
+            top: -12px;
+            left: 2px;
+            animation: rippleSmall 1s infinite linear;
+          }
+
+          .trace {
+            width: 75px;
+            height: 3px;
+            top: 27px;
+            left: -12px;
+            z-index: -1;
+          }
+        }
+        @-webkit-keyframes orbit {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+        @-moz-keyframes orbit {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+        @keyframes orbit {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+        @-webkit-keyframes rippleSmall {
+          0% {
+            box-shadow: 0 0 0 0 rgba(84, 247, 248, 0.1), 0 0 0 4px rgba(84, 247, 248, 0.1), 0 0 0 8px rgba(84, 247, 248, 0.1), 0 0 0 12px rgba(84, 247, 248, 0.1);
+          }
+          100% {
+            box-shadow: 0 0 0 4px rgba(84, 247, 248, 0.1), 0 0 0 8px rgba(84, 247, 248, 0.1), 0 0 0 12px rgba(84, 247, 248, 0.1), 0 0 0 16px rgba(84, 247, 248, 0);
+          }
+        }
+        @-moz-keyframes rippleSmall {
+          0% {
+            box-shadow: 0 0 0 0 rgba(84, 247, 248, 0.1), 0 0 0 4px rgba(84, 247, 248, 0.1), 0 0 0 8px rgba(84, 247, 248, 0.1), 0 0 0 12px rgba(84, 247, 248, 0.1);
+          }
+          100% {
+            box-shadow: 0 0 0 4px rgba(84, 247, 248, 0.1), 0 0 0 8px rgba(84, 247, 248, 0.1), 0 0 0 12px rgba(84, 247, 248, 0.1), 0 0 0 16px rgba(84, 247, 248, 0);
+          }
+        }
+        @keyframes rippleSmall {
+          0% {
+            box-shadow: 0 0 0 0 rgba(84, 247, 248, 0.1), 0 0 0 4px rgba(84, 247, 248, 0.1), 0 0 0 8px rgba(84, 247, 248, 0.1), 0 0 0 12px rgba(84, 247, 248, 0.1);
+          }
+          100% {
+            box-shadow: 0 0 0 4px rgba(84, 247, 248, 0.1), 0 0 0 8px rgba(84, 247, 248, 0.1), 0 0 0 12px rgba(84, 247, 248, 0.1), 0 0 0 16px rgba(84, 247, 248, 0);
+          }
+        }
+        @-webkit-keyframes ripple {
+          0% {
+            box-shadow: 0 0 0 0 rgba(84, 247, 248, 0.1), 0 0 0 5px rgba(84, 247, 248, 0.1), 0 0 0 10px rgba(84, 247, 248, 0.1), 0 0 0 15px rgba(84, 247, 248, 0.1);
+          }
+          100% {
+            box-shadow: 0 0 0 5px rgba(84, 247, 248, 0.1), 0 0 0 10px rgba(84, 247, 248, 0.1), 0 0 0 15px rgba(84, 247, 248, 0.1), 0 0 0 20px rgba(84, 247, 248, 0);
+          }
+        }
+        @-moz-keyframes ripple {
+          0% {
+            box-shadow: 0 0 0 0 rgba(84, 247, 248, 0.1), 0 0 0 5px rgba(84, 247, 248, 0.1), 0 0 0 10px rgba(84, 247, 248, 0.1), 0 0 0 15px rgba(84, 247, 248, 0.1);
+          }
+          100% {
+            box-shadow: 0 0 0 5px rgba(84, 247, 248, 0.1), 0 0 0 10px rgba(84, 247, 248, 0.1), 0 0 0 15px rgba(84, 247, 248, 0.1), 0 0 0 20px rgba(84, 247, 248, 0);
+          }
+        }
+        @keyframes ripple {
+          0% {
+            box-shadow: 0 0 0 0 rgba(84, 247, 248, 0.1), 0 0 0 5px rgba(84, 247, 248, 0.1), 0 0 0 10px rgba(84, 247, 248, 0.1), 0 0 0 15px rgba(84, 247, 248, 0.1);
+          }
+          100% {
+            box-shadow: 0 0 0 5px rgba(84, 247, 248, 0.1), 0 0 0 10px rgba(84, 247, 248, 0.1), 0 0 0 15px rgba(84, 247, 248, 0.1), 0 0 0 20px rgba(84, 247, 248, 0);
+          }
+        }
+        .levitate {
+          animation: levitate 1s ease-in-out -.75s infinite alternate;
+        }
+
+        @keyframes levitate {
+          0% {
+            transform: translateY(-10px);
+          }
+          100% {
+            transform: translateY(5px);
+          }
+        }
+        a {
+          color: #fff;
+          text-align: left;
+          position: fixed;
+          left: 15px;
+          top: 15px;
+        }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+   <!--表单样式-->
+    <style type="text/css">
+        *{
+          box-sizing: border-box;
+          padding: 0;
+          margin: 0;
+        }
+
+        .container-form.bkg{
+          background-color: rgb(41,51,104);
+          #background-image: url('http://www.canopipanama.com/fondo-sar-login.jpg');
+          background-size: cover;
+          background-position: center center;
+          background-attachment: fixed;
+          padding: 1em;
+          height: 100vh;
+          min-height: 30em;
+          position: relative;
+        }
+
+        .container-form.bkg.white
+        {
+          background: none;
+        }
+
+        .container-form.bkg.white::before
+        {
+          background: none;
+        }
+
+        .white .form-login
+        {
+          background: rgb(222,231,242);
+        }
+
+        .container-form.bkg::before
+        {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          /*background-color: rgba(41,51,104,.7);*/
+          background: radial-gradient(ellipse at top left, #293368 0%,#4889b8 48%,#312db9 100%);
+          z-index: 5;
+          opacity: 0.8;
+        }
+        .container-form br{display: none;}
+
+        .form-login
+        {
+          font-family: 'Open Sans', tahoma, sans-serif;
+          color: rgb(41,51,104);
+          background-color: #fff;
+          background-color: rgba(255,255,255,.75);
+          text-align: center;
+          border-radius: 1em;
+          width: 90%;
+          max-width: 22em;
+          min-width: 230px;
+          font-size: 18px;
+          padding-bottom: 3em;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translateX(-50%) translateY(-50%);
+          z-index: 10;
+          box-shadow: 0 0 1em rgba(0,0,0,.1);
+        }
+
+        .form-login :focus
+        {
+          outline: none
+        }
+
+        .form-login .head-title
+        {
+          background-color: #234F94;
+          border-radius: 1em 1em 0 0;
+          padding: 1.4em 1em;
+        }
+
+        .form-login .logo
+        {
+          height: 3.5em;
+          width: auto;
+        }
+        .form-login .logo.sar
+        {
+          margin-right: 5em;
+          margin-right: 35%;
+          transition: all ease .5s
+        }
+
+        .form-login .title
+        {
+          background-color: #fff;
+          background-color: rgba(255,255,255,.5);
+          padding: 0.4em 1em;
+          text-transform: uppercase;
+          margin-bottom: 1.5em;
+        }
+
+        .form-login .input-container,
+        .form-login .select-container,
+        .form-login .submit.btn,
+        .form-login .tag,
+        .form-login .input,
+        .form-login .select
+        {
+          display: inline-block;
+          vertical-align: middle;
+          border: none;
+          cursor: pointer;
+        }
+
+        .form-login .tag,
+        .form-login .select,
+        .form-login .btn
+        {
+          text-transform: uppercase;
+        }
+
+        .form-login .input,
+        .form-login .select,
+        .form-login .btn
+        {
+          padding: 0.8em 0.8em;
+        }
+
+        .form-login .input-container,
+        .submit.btn
+        {
+          width: 80%;
+        }
+
+        .form-login .input-container,
+        .form-login .select-container
+        {
+          background-color: #fff;
+          background-color: rgba(255,255,255,.9);
+          margin: 0.3em;
+          text-align: left;
+        }
+
+        .form-login .input-container,
+        .form-login .input-container .tag,
+        .form-login .input-container .input
+        .form-login .input-container::after
+        {
+          transition: all ease .5s;
+        }
+
+        .form-login .input-container
+        {
+          padding: 0.2em 1em;
+          padding-left: 5em;
+          position: relative;
+        }
+
+        .form-login .input-container::after {
+            font-family: "FontAwesome";
+            content: '\f007';
+            position: absolute;
+            z-index: 2;
+            right: 0;
+            top: 0;
+            height: 100%;
+            line-height: 250%;
+            font-size: 0.9em;
+            width: 2em;
+            text-align: center;
+        }
+
+        .form-login .tag
+        {
+          font-size: 0.6em;
+          text-transform: uppercase;
+          position: absolute;
+          min-width: 6.5em;
+          top: 50%;
+          left: 1.4em;
+          transform: translateY(-50%);
+        }
+
+        .form-login .input-container.infocus
+        {
+          padding: 0.4em 1em 0;
+          padding-left: 0;
+          background-color: #fff;
+        }
+
+        .form-login .input-container.infocus .tag
+        {
+          font-size: 0.4em;
+          top: 0;
+          transform: translateY(0.5em);
+        }
+
+        .form-login .user::after
+        {
+          content: '\f007';
+        }
+
+        .form-login .password::after
+        {
+          content: '\f084';
+        }
+
+        .form-login .input
+        {
+          width: 95%;
+          font-size: 0.8rem;
+          background-color: rgba(255,255,255,0);
+          color: rgb(72,137,184);
+        }
+
+        .form-login .select-container
+        {
+          width: 38.5%;
+          width: calc(40.8% - 0.6em);
+          position: relative;
+          transition: all ease .5s
+        }
+
+        .select-container.disabled
+        {
+          opacity: 0.4;
+          pointer-events: none;
+        }
+
+        .form-login .select-container::after
+        {
+          content: "\f0d7";
+          font-size: 0.8em;
+          line-height: 2.4em;
+          text-align: center;
+          color: #fff;
+          font-family: "FontAwesome";
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 2.2em;
+          height: 100%;
+          background-color: rgb(41,51,104);
+          pointer-events: none;
+        }
+
+        .form-login .select option
+        {
+          color: white;
+          background-color: rgb(41,51,104);
+          padding: 0.5em 0em;
+        }
+
+        .form-login .select option:checked {
+          background: rgb(49,45,185);
+        }
+
+        .form-login .select option:focus {
+          background: rgb(49,45,185);
+        }
+
+        .form-login .select
+        {
+          width: 100%;
+          font-size: 0.6em;
+          padding-left: 1em;
+          color: rgba(41,51,104,.8);
+          background-color: rgba(255,255,255,.9);
+        }
+
+        .form-login .btn
+        {
+          margin-top: 0.8em;
+          padding: 0.5em 1em;
+          background-color: rgb(10,22,133);
+          background-image: linear-gradient(to right, #312db9 0%,#4889b8 100%);
+          font-size: 1.1em;
+          font-weight: 300;
+          color: white;
+          box-shadow: inset 0 -0.1em 0 rgba(0,0,0,.5);
+          font-family: inherit;
+          transition: all ease .5s;
+        }
+
+        .form-login .btn:hover,
+        .form-login .btn:focus
+        {
+          filter: saturate(1.5);
+        }
+
+        .form-login .btn:active
+        {
+          transform: translateY(0.1em)
+        }
+
+        .form-login input:-webkit-autofill,
+        .form-login textarea:-webkit-autofill,
+        .form-login select:-webkit-autofill
+        {
+          background-color: #fff !important;
+          color: rgb(72,137,184) !important;
+          -webkit-text-fill-color: rgb(72,137,184) !important;
+          box-shadow:
+            inset 0 .5em 0 0 rgb(255, 255, 255),
+            inset 0 -.5em 0 0 rgb(255, 255, 255),
+            inset 0 0 0 10em rgb(239, 243, 246)
+        }
+
+        /*TEMA*/
+
+        .dozzier.container-form.bkg{
+         /* background-image: url('http://dozzier.gutierrezedgar.com/img/fondo-dozzier-login.jpg');*/
+        }
+
+        .dozzier.container-form.bkg::before{
+          background-image:
+            radial-gradient(ellipse
+              at top left,
+              #69c1bd 0%,
+              #b4cc78 48%,
+              #1ca29c 100%);
+        }
+
+        .dozzier .form-login{
+          color: rgb(28, 162, 156);
+        }
+
+        .dozzier .form-login .logo{
+          margin: auto;
+          max-width: 12em;
+          height: auto;
+        }
+
+        .dozzier .form-login .btn{
+          background-color: rgb(28, 162, 156);
+          background-image: linear-gradient(to right, #b4cc78 0%, #1ca29c 100%);
+          box-shadow: inset 0 -0.1em 0 rgba(0,0,0,.2);
+        }
+
+        .dozzier .form-login .select-container::after{
+          background-color: rgb(28, 162, 156);
+        }
+
+        .dozzier .form-login .select option:checked{
+          color: white;
+          background-color: rgb(28, 162, 156);
+        }
+
+        .dozzier .form-login .select option {
+          background: rgb(103, 103, 104);
+          color: #b4cc78;
+        }
+
+        .dozzier ::selection,
+        .dozzier .form-login .select option:hover{
+          background-color: rgba(183, 228, 70, 0.5);
+        }
+
+        @media (max-width: 480px) {
+          .dozzier .form-login .logo.dozzier{
+            width: 100%;
+          }
+
+          .form-login .logo.sar
+          {
+            margin-right: 1em;
+            margin-right: 15%;
+          }
+          .form-login .select-container {
+            width: 80%;
+          }
+        }
+
+        @media (min-width: 1200px)
+        {
+          .form-login
+          {
+            font-size: 20px;
+          }
+        }
+
+        @media (min-width: 1600px)
+        {
+          .form-login
+          {
+            font-size: 22px;
+          }
+        }
+
+        @media (min-width: 2400px)
+        {
+          .form-login
+          {
+            font-size: 24px;
+          }
+        }
+    </style>
+
+    <script type="text/javascript">
+        $( ".input" ).focus(function() {
+          $(this).parent(".input-container").addClass("infocus");
+        })
+        $( ".input" ).focusout(function() {
+          $(this).parent(".input-container").removeClass("infocus");
+        });
+        $( ".select" ).focus(function() {
+          $(this).parent(".select-container").addClass("infocus");
+        })
+        $( ".select" ).focusout(function() {
+          $(this).parent(".select-container").removeClass("infocus");
+        });
+        $( ".select[disabled]" ).parent(".select-container").addClass("disabled");
+
+
+    </script>
+
+
+<title>OA登录</title>
+<meta name="keywords" content="oa login">
+<meta name="description" content="oa login">
+</head>
+<body>
+
+  <div class="container-form bkg dozzier">
+  <form  class="form-login" method="post" action="/login/handler/">
+    <div class="head-title">
+      <div id="logo">
+        <div class="orbit-circle">
+            <div class="orbit-object"><span class="ripple"></span></div>
+            </div>
+            <div class="text">A<b class=""></b>             </div>
+        </div>
+    </div>
+    <label for="user" class="user input-container">
+      <span class="tag">用户名</span>
+      <input type="text" id="username" name="username" class="input" />
+    </label><br>
+    <label for="password" class="password input-container">
+      <span class="tag">密码</span>
+      <input type="password" id="password" name="password" class="input" />
+    </label><br>
+      <label for="password" class="password input-container">
+      <span class="tag">短信验证码</span>
+      <input type="password" id="sms_code" name="sms_code" class="input" />
+    </label><br>
+         {% if retcode == 1  %}
+             <p>{{ stderr }}</p>
+         {% endif %}
+    <input type="submit" class="submit btn"  id="user_login" value="Login"/>
+  </form>
+</div>
+
+
+<!--
+<script type="application/javascript">
+
+      $(function () {
+
+            $('#user_login').click(function () {
+                var user_dict = {};
+                user_dict["username"] = $("#username").val()
+                user_dict["password"] = $("#password").val()
+                user_dict["smscode"] = $("#sms_code").val()
+
+                $.ajax({
+                    url: '/login/handler/',
+                    type: 'post',
+                    contentType: 'application/json; charset=UTF-8',
+                    processData: true,
+                    data:  JSON.stringify(user_dict),
+                    success: function (data) {
+                        if (data.retcode == 0) {
+                            $("#form1").attr("action",'/');
+                            window.location.href("/")
+                        }else{
+                            console.log(data)
+                        }
+                    },
+                    error: function (data) {
+                        console.log("error")
+                    }
+                });
+            });
+        });
+
+</script>
+-->
+</body>
+</html>

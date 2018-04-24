@@ -1,0 +1,6 @@
+django==2.0.4
+requests==2.18.4
+simplejson==3.13.2
+djangorestframework==3.8.2
+PyMySQL==0.8.0
+gunicorn==19.7.1
